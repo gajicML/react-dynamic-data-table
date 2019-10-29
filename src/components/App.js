@@ -1,9 +1,10 @@
 import React from 'react';
+import TableComponent from './Table';
 
 function App() {
   return (
     <div className="App">
-      App component
+      <TableComponent />
     </div>
   );
 }
