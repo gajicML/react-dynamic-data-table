@@ -11,25 +11,22 @@ class TableComponent extends React.Component {
             {id: 1, name: "Mladen Gajic", height: 1.8328, date: "04.02.2016.", description: "Web designer", email: "mla.gajic@gmail.com"},
             {id: 2, name: "Aleksandar Milosevic", height: 1.8828, date: "10.04.2017.", description: "Pićkin dim junior developer",email: "aco@gmail.com"},
             {id: 3, name: "Dejan Tripic", height: 1.8228, date: "04.09.2015.", description: "Web designer",email: "tripa@gmail.com"},
-            {id: 4, name: "Aleksa Šarov", height: 1.8398, date: "25.06.2018.", description: "Pićkin dim midijor junior",email: "aleksa@gmail.com"}
-        ]
+            {id: 4, name: "Aleksa Šarov", height: 1.8398, date: "25.06.2018.", description: "Pićkin dim midijor developer",email: "aleksa@gmail.com"}
+        ],
+        editId: -1,
     }
 
     deleteUser = (index) => {
-        const employeesCopy = {...this.state.employees};
-        console.log(this.state.employees);
-
-        employeesCopy = employeesCopy.filter(item => {
-            return item;
-        });
-
-        console.log(employeesCopy);
-
-        // this.setState({
-        //     employees: employeesCopy
-        // })
-
+        let employeesCopy = this.state.employees;
+        employeesCopy = employeesCopy.filter(item => item.id !== index);
+        this.setState({
+            employees: employeesCopy
+        })
     };
+
+    startEditing = () => {}
+    stopEditing = () => {}
+    handleEditing = () => {}
 
     render() {
         return(
@@ -40,7 +37,6 @@ class TableComponent extends React.Component {
                             <th>Full Name</th>
                             <th>Height (cm)</th>
                             <th>Start Date</th>
-                            <th>Job Description</th>
                             <th>Action</th>
                         </tr>
                     </thead>
@@ -53,7 +49,10 @@ class TableComponent extends React.Component {
                                     key={employee.id} 
                                     details={employee}
                                     deleteUser={this.deleteUser}
-                                    index={employee.id}    
+                                    startEditing={this.startEditing}
+                                    stopEditing={this.stopEditing}
+                                    handleEditing={this.handleEditing}
+                                    index={employee.id} 
                                 />
                             )
                         })}
