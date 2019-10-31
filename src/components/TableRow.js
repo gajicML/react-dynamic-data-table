@@ -7,17 +7,16 @@ import Slot from './Slot';
 export default function TableRow(props) {
     return (
         <>
-            <tr> 
+            <tr className="table-row"> 
                 <td><String name={props.details.name}/></td>
                 <td><Number age={props.details.height}/></td> 
                 <td><Date date={props.details.date}/></td> 
                 <td>
                     <Slot 
-                        deleteUser={props.deleteUser}
+                        details={props.details}
+                        deleteRow={props.deleteRow}
+                        editRow={props.editRow}
                         index={props.index}
-                        startEditing={props.startEditing}
-                        stopEditing={props.stopEditing}
-                        handleEditing={props.handleEditing}
                     />
                 </td> 
             </tr>

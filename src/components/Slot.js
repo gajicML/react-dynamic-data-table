@@ -4,12 +4,23 @@ import Button from 'react-bootstrap/Button';
 export default function Slot(props) {
     return (
         <>
-            <Button 
+           <Button 
                 className="btn btn-danger btn-sm" 
-                onClick={() => {props.deleteUser(props.index)}}
+                onClick={() => {props.deleteRow(props.index)}}
             > 
                 Delete User 
             </Button>
+            &nbsp;
+            &nbsp;
+            <Button 
+                className="btn btn-primary btn-sm" 
+                onClick={() => {props.editRow(props.index)}}
+            > 
+                Edit 
+            </Button>
+            
+
+            
         </>
     )
 }
