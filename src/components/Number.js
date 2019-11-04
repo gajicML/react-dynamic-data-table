@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Number(props) {
+export default function Number({ number }) {
     return (
         <>
-           {props.age} 
+           {number} 
         </>
     )
 }

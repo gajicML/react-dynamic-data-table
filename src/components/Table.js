@@ -1,49 +1,56 @@
 import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import String from './String';
+import Number from './Number';
+import Slot from './Slot';
+import Date from './Date';
 
-const useStyles = makeStyles({
-  root: {
-    width: '100%',
-    overflowX: 'auto',
-  },
-  table: {
-    minWidth: 650,
-  },
-});
+const row = (item, index, header) => (
+    <TableRow key={`tr-${index}`}>
+        {header.map((cellItem, cellIndex) => 
+            <TableCell key={`tc-${cellIndex}`}>
+                {getComponent(cellItem.type,item[cellItem.prop])}
+            </TableCell>
+        )}
+    </TableRow>
+);
 
-export default function SimpleTable(props) {
+const getComponent = (type, value) => {
+    // eslint-disable-next-line default-case
+    switch(type) {
+        case "string":
+            return <String text={value}/>;
+        case "number":
+            return <Number number={value}/>;
+        case "date":
+            return <Date />;
+        case "slot":
+            return <Slot />;
+    } 
+};
 
-  return (
+export default ({ data, header }) => {
+    return(
     <Paper >
       <Table className='table table-striped ' aria-label="simple table">
         <TableHead>
           <TableRow>
-            <TableCell>Name</TableCell>
-            <TableCell align="right">Height</TableCell>
-            <TableCell align="right">Date</TableCell>
-            <TableCell align="right">Email</TableCell>
+                {header.map((item, index) => {
+                    return <TableCell key={index}>{item.name}</TableCell>
+                  })
+                }
           </TableRow>
         </TableHead>
         <TableBody>
-            {props.data.map(employee => {
-                return (
-                    <TableRow >
-                        <TableCell component="th" scope="row">  {employee.name} </TableCell>
-                        <TableCell align="right">{employee.height}</TableCell>
-                        <TableCell align="right">{employee.date}</TableCell>
-                        <TableCell align="right">{employee.email}</TableCell>
-                    </TableRow>
-                )
-            })}
-            
+            {data.map((item, index) => row(item, index, header))}
         </TableBody>
       </Table>
     </Paper>
-  );
+    )
+    
 }

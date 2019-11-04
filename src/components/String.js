@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function String(props) {
+export default function String({text}) {
     return (
         <>
-          <p>{props.name}</p>  
+          <p>{text}</p>  
         </>
     )
 }
