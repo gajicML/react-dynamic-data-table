@@ -1,0 +1,27 @@
+[
+    {
+        "name": "Full name",
+        "path": "full_name",
+        "type": "string",
+        "soratble": true
+    },
+    {
+        "name": "Height",
+        "path": "height",
+        "type": "number",
+        "soratble": true
+    },
+    {
+        "name": "Date",
+        "path": "date",
+        "type": "date",
+        "format": "dd-mm-yyyy",
+        "soratble": true
+    },
+    {
+        "name": "Email",
+        "path": "email",
+        "type": "string",
+        "soratble": true
+    }
+]   
