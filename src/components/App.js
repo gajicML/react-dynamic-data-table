@@ -18,6 +18,7 @@ class App extends React.Component {
 
     state = {
         data: [],
+        editIndex: -1
     }
 
     componentDidMount() {
@@ -33,7 +34,23 @@ class App extends React.Component {
         data: dataCopy
       })
     }
+
+    startEditing = (index) => {
+      this.setState({
+        editIndex: index
+      })
+    }
     
+    stopEditing = () => {
+      this.setState({
+        editIndex: -1
+      })
+    }
+
+    handleChange = () => {
+      console.log('handle change')
+    }
+
     render() {
         return(
           <div className="App">
@@ -51,6 +68,10 @@ class App extends React.Component {
                 data={this.state.data} 
                 header={header}
                 deleteRow={this.deleteRow}
+                startEditing={this.startEditing}
+                stopEditing={this.stopEditing}
+                handleChange={this.handleChange}
+                editIndex={this.state.editIndex}
               />
             </MuiThemeProvider>
 

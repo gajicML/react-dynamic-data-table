@@ -1,7 +1,7 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 
-export default function Slot({ deleteRow, editRow, itemId }) {
+export default function Slot({ deleteRow, startEditing, itemId }) {
     return (
         <>
            <Button 
@@ -14,7 +14,7 @@ export default function Slot({ deleteRow, editRow, itemId }) {
             &nbsp;
             <Button 
                 className="btn btn-primary btn-sm" 
-                onClick={() => {editRow(itemId)}}
+                onClick={() => {startEditing(itemId)}}
             > 
                 Edit 
             </Button>
