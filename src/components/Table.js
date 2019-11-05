@@ -17,8 +17,10 @@ const row = (item, index, header, deleteRow, startEditing, editIndex, stopEditin
                     {   
                         currentlyEditing 
                         ? <Input 
+                            name={cellItem.path}
                             val={item[cellItem.path]} 
-                            handleChange={handleChange}/> 
+                            handleChange={handleChange}
+                            index={item.id}/> 
                         : getComponent(cellItem.type, item[cellItem.path])
                     }
                 </TableCell>
@@ -29,6 +31,7 @@ const row = (item, index, header, deleteRow, startEditing, editIndex, stopEditin
                     itemId={item.id} 
                     startEditing={startEditing}
                     stopEditing={stopEditing}
+                    currentlyEditing={currentlyEditing}
                 />
             </TableCell>
         

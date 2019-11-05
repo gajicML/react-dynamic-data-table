@@ -19,13 +19,13 @@ class App extends React.Component {
     state = {
         data: [],
         editIndex: -1
-    }
+    };
 
     componentDidMount() {
       this.setState({
         data: dataSample
       })
-    }
+    };
 
     deleteRow = (rowIndex) => {
       let dataCopy = this.state.data;
@@ -33,23 +33,36 @@ class App extends React.Component {
       this.setState({
         data: dataCopy
       })
-    }
+    };
 
     startEditing = (index) => {
       this.setState({
         editIndex: index
       })
-    }
+    };
     
     stopEditing = () => {
       this.setState({
         editIndex: -1
       })
-    }
+    };
 
-    handleChange = () => {
-      console.log('handle change')
-    }
+    handleChange = (e, name, index) => {
+      const { value } = e.target;
+
+      let dataCopy = this.state.data;
+      dataCopy.map(row => {
+        return row.id === index ? ({...row, [name]: value}) : row
+      })
+
+      console.log(dataCopy);
+
+      // this.setState(state => ({
+      //   data: state.data.map(row => {
+      //     return row.id === index ? ({...row, [name]: value}) : row
+      //   })
+      // }));
+    };
 
     render() {
         return(
