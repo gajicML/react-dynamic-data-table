@@ -18,7 +18,7 @@ const row = (item, index, header, deleteRow, editRow) => (
             </TableCell>
         )}
         <TableCell>
-            <Slot deleteRow={deleteRow} e_index={item.id}/>
+            <Slot deleteRow={deleteRow} itemId={item.id}/>
         </TableCell>
      
     </TableRow>
@@ -35,8 +35,6 @@ const getComponent = (type, value) => {
             return <Date date={value}/>;
     } 
 };
-
-
 
 export default ({ data, header, deleteRow, editRow }) => {
     return(

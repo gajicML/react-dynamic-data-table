@@ -1,20 +1,20 @@
 import React from 'react'
 import Button from 'react-bootstrap/Button';
 
-export default function Slot(props) {
+export default function Slot({ deleteRow, editRow, itemId }) {
     return (
         <>
            <Button 
                 className="btn btn-danger btn-sm" 
-                onClick={() => {props.deleteRow(props.e_index)}}
+                onClick={() => {deleteRow(itemId)}}
             > 
-                Delete User 
+                Delete Row 
             </Button>
             &nbsp;
             &nbsp;
             <Button 
                 className="btn btn-primary btn-sm" 
-                onClick={() => {props.editRow(props.index)}}
+                onClick={() => {editRow(itemId)}}
             > 
                 Edit 
             </Button>

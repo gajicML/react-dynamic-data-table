@@ -27,7 +27,6 @@ class App extends React.Component {
     }
 
     deleteRow = (rowIndex) => {
-      console.log(rowIndex);
       let dataCopy = this.state.data;
       dataCopy = dataCopy.filter(item => item.id !== rowIndex);
       this.setState({
@@ -38,23 +37,23 @@ class App extends React.Component {
     render() {
         return(
           <div className="App">
+
             <MuiThemeProvider theme={theme}>
-                <TextField
-                    name="firstName"
-                    id="standard-basic"
-                    className="textField-text"
-                    label="Name"
-                    margin="normal"
-                />
-               
-                    <Table 
-                      data={this.state.data} 
-                      header={header}
-                      deleteRow={this.deleteRow}
-                      addRowIndexToState={this.addRowIndexToState}
-                    />
-                  
+              <TextField
+                name="firstName"
+                id="standard-basic"
+                className="textField-text"
+                label="Name"
+                margin="normal"
+              />
+              
+              <Table 
+                data={this.state.data} 
+                header={header}
+                deleteRow={this.deleteRow}
+              />
             </MuiThemeProvider>
+
           </div>
         )
     }
