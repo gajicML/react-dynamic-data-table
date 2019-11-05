@@ -6,7 +6,7 @@ export default function Slot(props) {
         <>
            <Button 
                 className="btn btn-danger btn-sm" 
-                onClick={() => {props.deleteRow(props.index)}}
+                onClick={() => {props.deleteRow(props.e_index)}}
             > 
                 Delete User 
             </Button>

@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Date(props) {
+export default function Date({date}) {
     return (
         <>
-            {props.date}
+            {date}
         </>
     )
 }

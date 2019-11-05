@@ -10,13 +10,17 @@ import Number from './Number';
 import Slot from './Slot';
 import Date from './Date';
 
-const row = (item, index, header) => (
+const row = (item, index, header, deleteRow, editRow) => (
     <TableRow key={`tr-${index}`}>
         {header.map((cellItem, cellIndex) => 
             <TableCell key={`tc-${cellIndex}`}>
-                {getComponent(cellItem.type,item[cellItem.prop])}
+                {getComponent(cellItem.type,item[cellItem.path])}
             </TableCell>
         )}
+        <TableCell>
+            <Slot deleteRow={deleteRow} e_index={item.id}/>
+        </TableCell>
+     
     </TableRow>
 );
 
@@ -28,13 +32,13 @@ const getComponent = (type, value) => {
         case "number":
             return <Number number={value}/>;
         case "date":
-            return <Date />;
-        case "slot":
-            return <Slot />;
+            return <Date date={value}/>;
     } 
 };
 
-export default ({ data, header }) => {
+
+
+export default ({ data, header, deleteRow, editRow }) => {
     return(
     <Paper >
       <Table className='table table-striped ' aria-label="simple table">
@@ -44,10 +48,11 @@ export default ({ data, header }) => {
                     return <TableCell key={index}>{item.name}</TableCell>
                   })
                 }
+                 <TableCell />
           </TableRow>
         </TableHead>
         <TableBody>
-            {data.map((item, index) => row(item, index, header))}
+            {data.map((item, index) => row(item, index, header, deleteRow, editRow))}
         </TableBody>
       </Table>
     </Paper>
