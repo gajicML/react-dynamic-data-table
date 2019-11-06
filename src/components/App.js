@@ -1,96 +1,87 @@
-import React from 'react';
-import Table from './Table';
-import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-import header from '../column.json';
-import dataSample from '../dataSample';
+import React from "react";
+import Table from "./Table";
+import { MuiThemeProvider, createMuiTheme } from "@material-ui/core/styles";
+import header from "../column.json";
+import dataSample from "../dataSample";
 
 const theme = createMuiTheme({
   palette: {
-    type: 'dark',
+    type: "dark"
   },
   status: {
-    danger: 'orange',
-  },
+    danger: "orange"
+  }
 });
 
 class App extends React.Component {
+  state = {
+    data: [],
+    editIndex: -1
+  };
 
-    state = {
-        data: [],
-        editIndex: -1
-    };
+  componentDidMount() {
+    this.setState({
+      data: dataSample
+    });
+  }
 
-    componentDidMount() {
-      this.setState({
-        data: dataSample
-      })
-    };
+  deleteRow = rowIndex => {
+    let dataCopy = this.state.data;
+    dataCopy = dataCopy.filter(item => item.id !== rowIndex);
+    this.setState({
+      data: dataCopy
+    });
+  };
 
-    deleteRow = (rowIndex) => {
-      let dataCopy = this.state.data;
-      dataCopy = dataCopy.filter(item => item.id !== rowIndex);
-      this.setState({
-        data: dataCopy
-      })
-    };
+  startEditing = index => {
+    this.setState({
+      editIndex: index
+    });
+  };
 
-    startEditing = (index) => {
-      this.setState({
-        editIndex: index
-      })
-    };
-    
-    stopEditing = () => {
-      this.setState({
-        editIndex: -1
-      })
-    };
+  stopEditing = () => {
+    this.setState({
+      editIndex: -1
+    });
+  };
 
-    handleChange = (e, name, index) => {
-      const { value } = e.target;
+  handleChange = (e, name, index) => {
+    const { value } = e.target;
 
-      let dataCopy = this.state.data;
-      dataCopy.map(row => {
-        return row.id === index ? ({...row, [name]: value}) : row
-      })
+    console.log("value ", value);
+    let dataCopy = this.state.data;
 
-      console.log(dataCopy);
+    dataCopy = dataCopy.map(row => {
+      return row.id === index ? { ...row, [name]: value } : row;
+    });
 
-      // this.setState(state => ({
-      //   data: state.data.map(row => {
-      //     return row.id === index ? ({...row, [name]: value}) : row
-      //   })
-      // }));
-    };
+    this.setState({
+      data: dataCopy
+    });
+  };
 
-    render() {
-        return(
-          <div className="App">
+  sortTable = columnIndex => {
+    console.log(columnIndex);
+  };
 
-            <MuiThemeProvider theme={theme}>
-              <TextField
-                name="firstName"
-                id="standard-basic"
-                className="textField-text"
-                label="Name"
-                margin="normal"
-              />
-              
-              <Table 
-                data={this.state.data} 
-                header={header}
-                deleteRow={this.deleteRow}
-                startEditing={this.startEditing}
-                stopEditing={this.stopEditing}
-                handleChange={this.handleChange}
-                editIndex={this.state.editIndex}
-              />
-            </MuiThemeProvider>
-
-          </div>
-        )
-    }
+  render() {
+    return (
+      <div className="App">
+        <MuiThemeProvider theme={theme}>
+          <Table
+            data={this.state.data}
+            header={header}
+            deleteRow={this.deleteRow}
+            startEditing={this.startEditing}
+            stopEditing={this.stopEditing}
+            handleChange={this.handleChange}
+            editIndex={this.state.editIndex}
+            sortTable={this.sortTable}
+          />
+        </MuiThemeProvider>
+      </div>
+    );
+  }
 }
 
 export default App;

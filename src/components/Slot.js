@@ -1,38 +1,45 @@
-import React from 'react'
-import Button from 'react-bootstrap/Button';
+import React from "react";
+import EditIcon from "@material-ui/icons/Edit";
+import CheckIcon from "@material-ui/icons/Check";
+import HighlightOffIcon from "@material-ui/icons/HighlightOff";
 
-export default function Slot({ deleteRow, startEditing, itemId, stopEditing, currentlyEditing }) {
-    return (
-        <>
-           
-            {
-                currentlyEditing ? 
-                <Button 
-                    className="btn btn-success btn-sm" 
-                    onClick={() => {stopEditing()}}
-                > 
-                    Finish 
-                </Button> 
-                : 
-                <Button 
-                    className="btn btn-primary btn-sm" 
-                    onClick={() => {startEditing(itemId)}}
-                > 
-                    Edit 
-                </Button>
-            }
-
-            &nbsp;
-            &nbsp;
-
-            <Button 
-                className="btn btn-danger btn-sm" 
-                onClick={() => {deleteRow(itemId)}}
-            > 
-                D
-            </Button>
-           
-            
-        </>
-    )
+export default function Slot({
+  deleteRow,
+  startEditing,
+  itemId,
+  stopEditing,
+  currentlyEditing
+}) {
+  return (
+    <>
+      {currentlyEditing ? (
+        <span>
+          <CheckIcon
+            className="icons check"
+            onClick={() => {
+              stopEditing();
+            }}
+          />
+        </span>
+      ) : (
+        <span>
+          <EditIcon
+            className="icons edit"
+            onClick={() => {
+              startEditing(itemId);
+            }}
+          />
+        </span>
+      )}
+      &nbsp; &nbsp;
+      <span>
+        <HighlightOffIcon
+          className="icons delete"
+          onClick={() => {
+            deleteRow(itemId);
+          }}
+        />
+      </span>
+    </>
+  );
 }

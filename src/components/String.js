@@ -1,9 +1,17 @@
-import React from 'react'
+import React from "react";
+import TextField from "@material-ui/core/TextField";
 
-export default function String({text}) {
+export default function String({ text }) {
     return (
-        <>
-          <p>{text}</p>  
-        </>
-    )
+        <TextField
+            id="standard-multiline-flexible"
+            multiline
+            rowsMax="4"
+            defaultValue={text}
+            InputProps={{
+                readOnly: true,
+                disableUnderline: true
+            }}
+        />
+    );
 }

@@ -5,15 +5,36 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background: url("http://cdn.backgroundhost.com/backgrounds/subtlepatterns/dark_wood.png");
 }
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
-
-.App{
+.App {
   max-width: 1000px;
-  margin: 1% auto;
+  margin: 7% auto;
+}
+.icons:hover {
+  cursor: pointer;
+}
 
+.icons.check {
+  color: #4caf50;
+}
+.icons.delete {
+  color: #f44336;
+}
+.icons.edit {
+  color: #03a9f4;
+}
+.input-active .MuiInputBase-input {
+  padding: 4% 4% 1%;
+}
+.input-active .MuiOutlinedInput-multiline {
+  padding: 2% 2%;
+}
+.header-cells:hover {
+  cursor: pointer;
+  opacity: 0.3;
 }
