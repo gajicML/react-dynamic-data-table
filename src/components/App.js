@@ -59,7 +59,12 @@ class App extends React.Component {
   };
 
   sortColumn = columnName => {
-    console.log(columnName);
+    let dataCopy = this.state.data;
+    this.setState({
+      data: dataCopy.sort((a, b) => {
+        return a[columnName].localeCompare(b[columnName]);
+      })
+    });
   };
 
   render() {
