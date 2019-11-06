@@ -47,8 +47,6 @@ class App extends React.Component {
 
   handleChange = (e, name, index) => {
     const { value } = e.target;
-
-    console.log("value ", value);
     let dataCopy = this.state.data;
 
     dataCopy = dataCopy.map(row => {
@@ -60,8 +58,8 @@ class App extends React.Component {
     });
   };
 
-  sortTable = columnIndex => {
-    console.log(columnIndex);
+  sortColumn = columnName => {
+    console.log(columnName);
   };
 
   render() {
@@ -76,7 +74,7 @@ class App extends React.Component {
             stopEditing={this.stopEditing}
             handleChange={this.handleChange}
             editIndex={this.state.editIndex}
-            sortTable={this.sortTable}
+            sortColumn={this.sortColumn}
           />
         </MuiThemeProvider>
       </div>

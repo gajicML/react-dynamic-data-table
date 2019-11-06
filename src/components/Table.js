@@ -75,7 +75,7 @@ export default ({
   editIndex,
   stopEditing,
   handleChange,
-  sortTable
+  sortColumn
 }) => {
   return (
     <Paper>
@@ -85,7 +85,7 @@ export default ({
             {header.map((item, index) => {
               return (
                 <TableCell
-                  onClick={() => sortTable(item.path)}
+                  onClick={() => sortColumn(item.path)}
                   key={index}
                   className="header-cells"
                 >
