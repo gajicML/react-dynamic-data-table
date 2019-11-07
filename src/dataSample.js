@@ -20,7 +20,7 @@ const dataSample = [
     full_name: "Dejan Tripic",
     height: 1.8228,
     date: "04.09.2015.",
-    description: "Šef",
+    description: "Triipa",
     email: "tripa@gmail.com"
   },
   {

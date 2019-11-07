@@ -15,17 +15,20 @@ const theme = createMuiTheme({
 
 class App extends React.Component {
   state = {
-    data: [],
+    data: dataSample,
     editIndex: -1
   };
 
-  componentDidMount() {
-    this.setState({
-      data: dataSample
-    });
-  }
+  // componentDidMount() {
+  //   this.setState({
+  //     data: dataSample
+  //   });
+  // }
 
   deleteRow = rowIndex => {
+    if (!window.confirm("Are you sure you wish to delete this row?"))
+      return false;
+
     let dataCopy = this.state.data;
     dataCopy = dataCopy.filter(item => item.id !== rowIndex);
     this.setState({
@@ -58,12 +61,20 @@ class App extends React.Component {
     });
   };
 
-  sortColumn = columnName => {
+  sortColumn = (columnName, type) => {
     let dataCopy = this.state.data;
-    this.setState({
-      data: dataCopy.sort((a, b) => {
+
+    if (type === "string" || type === "date") {
+      console.log("sort By string");
+      dataCopy.sort((a, b) => {
         return a[columnName].localeCompare(b[columnName]);
-      })
+      });
+    } else if (type === "number") {
+      console.log("sort By Number");
+    }
+
+    this.setState({
+      data: dataCopy
     });
   };
 

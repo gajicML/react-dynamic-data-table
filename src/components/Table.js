@@ -12,6 +12,7 @@ import Number from "./Number";
 import Slot from "./Slot";
 import Date from "./Date";
 import Input from "./Input";
+import ImportExportIcon from "@material-ui/icons/ImportExport";
 
 const row = (
   item,
@@ -85,11 +86,20 @@ export default ({
             {header.map((item, index) => {
               return (
                 <TableCell
-                  onClick={() => sortColumn(item.path)}
+                  onClick={
+                    item.sortable
+                      ? () => sortColumn(item.path, item.type)
+                      : () => true
+                  }
                   key={index}
                   className="header-cells"
                 >
-                  {item.name}
+                  {item.name}{" "}
+                  {item.sortable ? (
+                    <ImportExportIcon style={{ fontSize: 20 }} />
+                  ) : (
+                    ""
+                  )}
                 </TableCell>
               );
             })}

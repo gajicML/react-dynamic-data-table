@@ -38,3 +38,8 @@ code {
   cursor: pointer;
   opacity: 0.3;
 }
+
+.test {
+  background: white;
+  color: #000;
+}
