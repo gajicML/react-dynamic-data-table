@@ -43,3 +43,8 @@ code {
   background: white;
   color: #000;
 }
+
+.number-input .MuiInputBase-input {
+  height: 1.875em;
+  padding: 9px 0 4px;
+}

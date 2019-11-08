@@ -15,8 +15,8 @@
     "name": "Date",
     "path": "date",
     "type": "date",
-    "format": "dd-mm-yyyy",
-    "sortable": false
+    "format": "YYYY-MM-DD",
+    "sortable": true
   },
   {
     "name": "Email",

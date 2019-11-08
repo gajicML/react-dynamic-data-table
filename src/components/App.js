@@ -16,7 +16,9 @@ const theme = createMuiTheme({
 class App extends React.Component {
   state = {
     data: dataSample,
-    editIndex: -1
+    editIndex: -1,
+    sortedColumn: null,
+    sortOrder: null
   };
 
   // componentDidMount() {
@@ -63,18 +65,32 @@ class App extends React.Component {
 
   sortColumn = (columnName, type) => {
     let dataCopy = this.state.data;
+    let sortOrder = "";
 
     if (type === "string" || type === "date") {
-      console.log("sort By string");
-      dataCopy.sort((a, b) => {
-        return a[columnName].localeCompare(b[columnName]);
-      });
+      if (
+        columnName === this.state.sortedColumn &&
+        this.state.sortOrder === "asc"
+      ) {
+        dataCopy
+          .sort((a, b) => {
+            return a[columnName].localeCompare(b[columnName]);
+          })
+          .reverse();
+        sortOrder = "desc";
+      } else {
+        dataCopy.sort((a, b) => {
+          return a[columnName].localeCompare(b[columnName]);
+        });
+        sortOrder = "asc";
+      }
     } else if (type === "number") {
-      console.log("sort By Number");
     }
 
     this.setState({
-      data: dataCopy
+      data: dataCopy,
+      sortedColumn: columnName,
+      sortOrder: sortOrder
     });
   };
 
