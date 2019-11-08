@@ -12,7 +12,9 @@ import Number from "./Number";
 import Slot from "./Slot";
 import Date from "./Date";
 import Input from "./Input";
-import ImportExportIcon from "@material-ui/icons/ImportExport";
+import SwapVertIcon from "@material-ui/icons/SwapVert";
+import KeyboardArrowRightIcon from "@material-ui/icons/KeyboardArrowRight";
+import KeyboardArrowLeftIcon from "@material-ui/icons/KeyboardArrowLeft";
 
 const row = (
   item,
@@ -76,7 +78,8 @@ export default ({
   editIndex,
   stopEditing,
   handleChange,
-  sortColumn
+  sortColumn,
+  decimalSpace
 }) => {
   return (
     <Paper>
@@ -85,18 +88,35 @@ export default ({
           <TableRow>
             {header.map((item, index) => {
               return (
-                <TableCell
-                  onClick={
-                    item.sortable
-                      ? () => sortColumn(item.path, item.type)
-                      : () => true
-                  }
-                  key={index}
-                  className="header-cells"
-                >
-                  {item.name}{" "}
-                  {item.sortable ? (
-                    <ImportExportIcon style={{ fontSize: 20 }} />
+                <TableCell key={index}>
+                  <span
+                    onClick={
+                      item.sortable
+                        ? () => sortColumn(item.path, item.type)
+                        : () => true
+                    }
+                    className="header-cells"
+                  >
+                    {item.name}{" "}
+                    {item.sortable ? (
+                      <SwapVertIcon style={{ fontSize: 15 }} />
+                    ) : (
+                      ""
+                    )}
+                  </span>
+                  &nbsp;
+                  {item.type === "number" ? (
+                    <span className="decimal">
+                      <KeyboardArrowRightIcon
+                        className="decimal-right decimal-icon"
+                        onClick={() => decimalSpace("left")}
+                      />
+                      .
+                      <KeyboardArrowLeftIcon
+                        className="decimal-left decimal-icon"
+                        onClick={() => decimalSpace("right")}
+                      />{" "}
+                    </span>
                   ) : (
                     ""
                   )}

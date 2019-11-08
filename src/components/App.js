@@ -21,12 +21,6 @@ class App extends React.Component {
     sortOrder: null
   };
 
-  // componentDidMount() {
-  //   this.setState({
-  //     data: dataSample
-  //   });
-  // }
-
   deleteRow = rowIndex => {
     if (!window.confirm("Are you sure you wish to delete this row?"))
       return false;
@@ -73,18 +67,24 @@ class App extends React.Component {
         this.state.sortOrder === "asc"
       ) {
         dataCopy
-          .sort((a, b) => {
-            return a[columnName].localeCompare(b[columnName]);
-          })
+          .sort((a, b) => a[columnName].localeCompare(b[columnName]))
           .reverse();
         sortOrder = "desc";
       } else {
-        dataCopy.sort((a, b) => {
-          return a[columnName].localeCompare(b[columnName]);
-        });
+        dataCopy.sort((a, b) => a[columnName].localeCompare(b[columnName]));
         sortOrder = "asc";
       }
     } else if (type === "number") {
+      if (
+        columnName === this.state.sortedColumn &&
+        this.state.sortOrder === "asc"
+      ) {
+        dataCopy.sort((a, b) => a[columnName] - b[columnName]);
+        sortOrder = "desc";
+      } else {
+        dataCopy.sort((a, b) => b[columnName] - a[columnName]);
+        sortOrder = "asc";
+      }
     }
 
     this.setState({
@@ -92,6 +92,21 @@ class App extends React.Component {
       sortedColumn: columnName,
       sortOrder: sortOrder
     });
+  };
+
+  decimalSpace = side => {
+    let fixedSpace = 0;
+    if (side === "left") {
+      console.log(side);
+      fixedSpace++;
+    } else {
+      // fixedSpace--;
+    }
+    let dataCopy = this.state.data;
+    dataCopy = dataCopy.map(row => {
+      return parseFloat(row["height"].toFixed(fixedSpace));
+    });
+    console.log(dataCopy);
   };
 
   render() {
@@ -107,6 +122,7 @@ class App extends React.Component {
             handleChange={this.handleChange}
             editIndex={this.state.editIndex}
             sortColumn={this.sortColumn}
+            decimalSpace={this.decimalSpace}
           />
         </MuiThemeProvider>
       </div>

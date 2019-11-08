@@ -48,3 +48,14 @@ code {
   height: 1.875em;
   padding: 9px 0 4px;
 }
+
+.decimal {
+  color: #ddd;
+}
+.decimal-icon {
+}
+
+.decimal-icon:hover {
+  cursor: pointer;
+  opacity: 0.3;
+}
