@@ -95,18 +95,38 @@ class App extends React.Component {
   };
 
   decimalSpace = side => {
-    let fixedSpace = 0;
-    if (side === "left") {
-      console.log(side);
-      fixedSpace++;
-    } else {
-      // fixedSpace--;
-    }
     let dataCopy = this.state.data;
+
     dataCopy = dataCopy.map(row => {
-      return parseFloat(row["height"].toFixed(fixedSpace));
+      let fixedSpace;
+      let zero = "0";
+      const parts = row["height"].toString().split(".", 2);
+
+      if (side === "left") {
+        row["height"] = parseFloat(row["height"]);
+
+        if (fixedSpace < 1 || !parts[1]) {
+          fixedSpace = 0;
+        } else {
+          fixedSpace = parts[1].length - 1;
+        }
+        row["height"] = row["height"].toFixed(fixedSpace);
+      } else if (side === "right") {
+        if (parts[1]) {
+          fixedSpace = parts[1].length + 1;
+        } else {
+          fixedSpace = 1;
+          zero = ".0";
+        }
+        row["height"] = Number.parseFloat(row["height"] + zero).toFixed(
+          fixedSpace
+        );
+      }
+      return row;
     });
-    console.log(dataCopy);
+    this.setState({
+      data: dataCopy
+    });
   };
 
   render() {

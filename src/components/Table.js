@@ -107,12 +107,12 @@ export default ({
                   &nbsp;
                   {item.type === "number" ? (
                     <span className="decimal">
-                      <KeyboardArrowRightIcon
+                      <KeyboardArrowLeftIcon
                         className="decimal-right decimal-icon"
                         onClick={() => decimalSpace("left")}
                       />
                       .
-                      <KeyboardArrowLeftIcon
+                      <KeyboardArrowRightIcon
                         className="decimal-left decimal-icon"
                         onClick={() => decimalSpace("right")}
                       />{" "}
