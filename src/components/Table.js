@@ -109,12 +109,12 @@ export default ({
                     <span className="decimal">
                       <KeyboardArrowLeftIcon
                         className="decimal-right decimal-icon"
-                        onClick={() => decimalSpace("left")}
+                        onClick={() => decimalSpace("left", item.path)}
                       />
                       .
                       <KeyboardArrowRightIcon
                         className="decimal-left decimal-icon"
-                        onClick={() => decimalSpace("right")}
+                        onClick={() => decimalSpace("right", item.path)}
                       />{" "}
                     </span>
                   ) : (

@@ -22,7 +22,7 @@ class App extends React.Component {
   };
 
   deleteRow = rowIndex => {
-    if (!window.confirm("Are you sure you wish to delete this row?"))
+    if (!window.confirm("Are you sure you want to delete this row?"))
       return false;
 
     let dataCopy = this.state.data;
@@ -94,23 +94,23 @@ class App extends React.Component {
     });
   };
 
-  decimalSpace = side => {
+  decimalSpace = (side, path) => {
     let dataCopy = this.state.data;
 
     dataCopy = dataCopy.map(row => {
       let fixedSpace;
       let zero = "0";
-      const parts = row["height"].toString().split(".", 2);
+      const parts = row[path].toString().split(".", 2);
 
       if (side === "left") {
-        row["height"] = parseFloat(row["height"]);
+        row[path] = parseFloat(row[path]);
 
         if (fixedSpace < 1 || !parts[1]) {
           fixedSpace = 0;
         } else {
           fixedSpace = parts[1].length - 1;
         }
-        row["height"] = row["height"].toFixed(fixedSpace);
+        row[path] = row[path].toFixed(fixedSpace);
       } else if (side === "right") {
         if (parts[1]) {
           fixedSpace = parts[1].length + 1;
@@ -118,9 +118,7 @@ class App extends React.Component {
           fixedSpace = 1;
           zero = ".0";
         }
-        row["height"] = Number.parseFloat(row["height"] + zero).toFixed(
-          fixedSpace
-        );
+        row[path] = Number.parseFloat(row[path] + zero).toFixed(fixedSpace);
       }
       return row;
     });
